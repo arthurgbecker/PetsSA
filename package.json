@@ -1,0 +1,43 @@
+{
+  "name": "petssa",
+  "version": "1.0.0",
+  "description": "Desenvolvimento de Aplicativo para Pet Shops (SA)",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "cross-env NODE_ENV=producao node server",
+    "dev": "cross-env NODE_ENV=desenvolvimento nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arthurgbecker/PetsSA.git"
+  },
+  "keywords": [
+    "projeto",
+    "petshop",
+    "pets",
+    "senai",
+    "app"
+  ],
+  "author": "Javalees",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arthurgbecker/PetsSA/issues"
+  },
+  "homepage": "https://github.com/arthurgbecker/PetsSA#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.3"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.19"
+  }
+}
