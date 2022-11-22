@@ -81,7 +81,7 @@ const RegisterPet = ({ navigation }) => {
                 source={{
                 uri: imagempet
                     ? imagempet.uri
-                    : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+                    : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-contact-outline-512.png"
                 }}
             />
 

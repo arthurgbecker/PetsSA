@@ -99,6 +99,7 @@ const RegisterUser = ({ navigation }) => {
                 placeholder="Confrime Password"
                 value={confirmepassword}
                 setValue={setConfirmeassword}
+                secureTextEntry={true}
             />
    
             <Picker
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 20,
         backgroundColor: '#9F94FC',
-        flex: 1
+        flex: 3
     },
     logo: {
         width: '70%',

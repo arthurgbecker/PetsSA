@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity, Image } from 'react-native'
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../context/authContext'
 import CustomButton from '../components/CustomButton'
@@ -42,35 +42,21 @@ const Home = ({navigation}) => {
 
                 <Image style={styles.imagePet}
                     source={{
-                    uri: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+                    uri: "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
                     }}
                 />
 
               <TouchableOpacity style={styles.text} onPress={() => seeReview(item)}>
-                {/* <Text style={styles.item}>ip User - {item.iduser}</Text>
-                <Text style={styles.item}>ip Pet - {item.idpet}</Text> */}
-                <Text style={styles.item}>Nome do Serviço - {item.nomeservice}</Text>
-                <Text style={styles.item}>Descrição - {item.descricao}</Text>
-                <Text style={styles.item}>Valor - R${item.valor}</Text>
+              <Text style={styles.title}>{item.nomeservice}</Text>
+                <Text style={styles.item}>Descrição: {item.descricao}</Text>
+                <Text style={styles.item}>Valor: R${item.valor}</Text>
+                <Text style={styles.item}>Ver detalhes</Text>
               </TouchableOpacity>
             </View>
           )
         }}
         keyExtractor={(item) => item.id}
       />
-
-      {/* {state.isAdmin ? (
-        <></>
-      ) : (
-        <Ionicons.Button style={styles.iconbutton}
-          name="add-circle" 
-          backgroundColor="#AFF4D4" 
-          color='#4536E3'
-          onPress={() => navigation.navigate("RegisterPet")}>
-            Cadastrar Pet
-        </Ionicons.Button>
-
-      )} */}
     </View>
   )
 }
@@ -106,12 +92,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   title: {
-    fontSize: 25,
-    padding: 10
+    fontSize: 18,
+    margin: 3,
   },
   item: {
-    fontSize: 15,
-    marginLeft: 25,
+    fontSize: 12,
     margin: 3,
   },
   iconbutton: {

@@ -2,74 +2,67 @@ import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity, Image } fro
 import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../context/authContext'
 import CustomButton from '../components/CustomButton'
-import { Ionicons  } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import api from '../api';
 
-const Visualizaservice = ({navigation}) => {
+const Visualizaservice = ({ navigation }) => {
   const { state, dispatch } = useContext(Context);
-  const [ services, setServices ] = useState({})
+  const [services, setServices] = useState({})
 
   useEffect(() => {
     const onScreenLoad = async () => {
-      const list = await api.get('/service/find')
+      const list = await api.get('/service/find', {
+        params: {
+          id: state.idService
+        }
+      })
       setServices(list.data.services)
-      dispatch({type: "update", payload: false})
+      dispatch({ type: "update", payload: false })
       console.log(list);
     }
     onScreenLoad()
   }, [state.update])
 
-  const seeReview = async (item) => {
-    await dispatch({type: 'setService', payload: item});
-    navigation.navigate('Visualizaservice');
-  }
-
-  const newReview = async (item) => {
-    await dispatch({type: 'setService', payload: item});
-    navigation.navigate('Visualizaservice')
-  }
+  // useEffect(() => {
+  //   const onScreenLoad = async () => {
+  //     const list = await api.get('/service/findByService', {
+  //       params: {
+  //         idService: state.idService
+  //       }
+  //     });
+  //     console.log(list);
+  //     setServices(list.data.services)
+  //     dispatch({ type: "update", payload: false })
+  //   }
+  //   onScreenLoad();
+  // }, [state.update]
+  // )
 
   return (
     <View style={styles.view}>
       <Text style={styles.textservice}>Serviço</Text>
-      
+
       <FlatList
         data={services}
         renderItem={({ item }) => {
           return (
             <View style={styles.container}>
 
-                <Image style={styles.imagePet}
-                    source={{
-                    uri: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
-                    }}
-                />
+              <Image style={styles.imagePet}
+                source={{
+                  uri: "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
+                }}
+              />
 
-              <TouchableOpacity style={styles.text}>
-                {/* <Text style={styles.item}>ip User - {item.iduser}</Text>
-                <Text style={styles.item}>ip Pet - {item.idpet}</Text> */}
-                <Text style={styles.item}>Nome do Serviço - {item.nomeservice}</Text>
-                <Text style={styles.item}>Descrição - {item.descricao}</Text>
-                <Text style={styles.item}>Valor - R${item.valor}</Text>
-              </TouchableOpacity>
+              <Text style={styles.title}>{item.nomeservice}</Text>
+              <Text style={styles.item}>Descrição: {item.descricao}</Text>
+              <Text style={styles.item}>Valor: R${item.valor}</Text>
+
             </View>
           )
         }}
         keyExtractor={(item) => item.id}
       />
-
-      {/* {state.isAdmin ? (
-        <></>
-      ) : (
-        <Ionicons.Button style={styles.iconbutton}
-          name="add-circle" 
-          backgroundColor="#AFF4D4" 
-          color='#4536E3'
-          onPress={() => navigation.navigate("RegisterPet")}>
-            Cadastrar Pet
-        </Ionicons.Button>
-
-      )} */}
     </View>
   )
 }
@@ -86,18 +79,15 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     justifyContent: "center"
-   
+
   },
   container: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    width: '98%',
-    backgroundColor: '#9F94FC',
     margin: 5,
     padding: 10,
     borderRadius: 10,
     alignItems: 'center',
-  
+    width: '80%',
+    justifyContent: "center",
   },
   text: {
     height: 65,
@@ -110,13 +100,7 @@ const styles = StyleSheet.create({
   },
   item: {
     fontSize: 15,
-    marginLeft: 25,
     margin: 3,
-  },
-  iconbutton: {
-    margin: 5,
-    padding: 8,
-    borderRadius: 10,
   },
   imagePet: {
     width: 100,

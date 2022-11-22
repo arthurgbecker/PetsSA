@@ -4,6 +4,7 @@ import petshop from './petshop.routes.js';
 import pet from './pet.routes.js';
 import service from './service.routes.js'
 import login from './login.routes.js';
+import agendamento from './agendamento.routes.js';
 
 const router = express.Router();
 
@@ -12,5 +13,6 @@ router.use('/petshop', petshop);
 router.use('/pet', pet);
 router.use('/service', service);
 router.use('/login', login);
+router.use('/agendamento', agendamento);
 
 export default router;

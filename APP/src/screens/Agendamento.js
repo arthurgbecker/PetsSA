@@ -1,20 +1,20 @@
 import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity, Image } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../context/authContext'
-import api from '../api';
-import CustomButton from '../components/CustomButton';
+import CustomButton from '../components/CustomButton'
 import { Ionicons  } from '@expo/vector-icons'
+import api from '../api';
 
-import DateTime from "./DateTime";
+import DateTime from './DateTime.js'
 
 const Agendamento = ({navigation}) => {
   const { state, dispatch } = useContext(Context);
-  const [ pets, setPets ] = useState({})
+  const [ services, setServices ] = useState({})
 
   useEffect(() => {
     const onScreenLoad = async () => {
-      const list = await api.get('/pet/find')
-      setPets(list.data.pets)
+      const list = await api.get('/service/find')
+      setServices(list.data.services)
       dispatch({type: "update", payload: false})
       console.log(list);
     }
@@ -22,30 +22,35 @@ const Agendamento = ({navigation}) => {
   }, [state.update])
 
   const seeReview = async (item) => {
-    await dispatch({type: 'setPet', payload: item});
-    navigation.navigate('RestaurantReviews');
+    await dispatch({type: 'setService', payload: item});
+    navigation.navigate('Visualizaservice');
   }
 
   const newReview = async (item) => {
-    await dispatch({type: 'setPet', payload: item});
-    navigation.navigate('RegisterReview')
+    await dispatch({type: 'setService', payload: item});
+    navigation.navigate('Visualizaservice')
   }
 
   return (
     <View style={styles.view}>
-      <Text style={styles.textpet}>Agendamento</Text>
+      <Text style={styles.textservice}>Serviço</Text>
       
-      {state.isAdmin ? (
-        <></>
-      ) : (
-        <></>
-      )}
-       <FlatList
-          data={pets}
-          renderItem={({ item }) => {
+      <FlatList
+        data={services}
+        renderItem={({ item }) => {
           return (
             <View style={styles.container}>
-            
+
+                <Image style={styles.imagePet}
+                    source={{
+                    uri: "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
+                    }}
+                />
+
+                <Text style={styles.title}>{item.nomeservice}</Text>
+                <Text style={styles.item}>Descrição: {item.descricao}</Text>
+                <Text style={styles.item}>Valor: R${item.valor}</Text>
+             
             </View>
           )
         }}
@@ -59,7 +64,7 @@ const Agendamento = ({navigation}) => {
 }
 
 const styles = StyleSheet.create({
-  textpet: {
+  textservice: {
     fontSize: 20,
     margin: 10,
   },
@@ -69,24 +74,20 @@ const styles = StyleSheet.create({
   },
   view: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "center"
    
   },
   container: {
-    //flexDirection: "row",
-    //flexWrap: "wrap",
     margin: 5,
     padding: 10,
     borderRadius: 10,
-    //backgroundColor: '#9F94FC',
     alignItems: 'center',
-    //height: 65,
     width: '80%',
     justifyContent: "center",
   },
   text: {
     height: 65,
-    width: '80%',
+    width: '50%',
     justifyContent: "center",
   },
   title: {
@@ -94,15 +95,13 @@ const styles = StyleSheet.create({
     padding: 10
   },
   item: {
-    fontSize: 15
-  },
-  iconbutton: {
-   
+    fontSize: 15,
+    margin: 3,
   },
   imagePet: {
     width: 100,
     height: 100,
-    borderRadius: 50
+    borderRadius: 10,
   }
 })
 

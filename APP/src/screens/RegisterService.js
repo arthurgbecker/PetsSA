@@ -12,6 +12,7 @@ const RegisterService = ({ navigation }) => {
     const [iduser, setIduser] = useState('');
     const [idpet, setIdpet] = useState('');
     const [nomeservice, setNomeservice] = useState('');
+    const [tipo, setTipo] = useState('');
     const [descricao, setDescricao] = useState('');
     const [valor, setValor] = useState('');
      
@@ -23,6 +24,7 @@ const RegisterService = ({ navigation }) => {
                 iduser: iduser,
                 idpet: idpet,
                 nomeservice: nomeservice,
+                tipo: tipo,
                 descricao: descricao,
                 valor: valor,
                 imagemservice: imagemservice,
@@ -65,7 +67,7 @@ const RegisterService = ({ navigation }) => {
                 source={{
                 uri: imagemservice
                     ? imagemservice.uri
-                    : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+                    : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
                 }}
             />
 
@@ -90,6 +92,13 @@ const RegisterService = ({ navigation }) => {
                 value={nomeservice}
                 setValue={setNomeservice}
             />
+
+             <CustomInput
+                placeholder="Tipo"
+                value={tipo}
+                setValue={setTipo}
+            />
+
 
             <CustomInput
                 placeholder="Descrição"

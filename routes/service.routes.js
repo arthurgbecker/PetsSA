@@ -9,7 +9,7 @@ service.get('/', (req, res) => {
 
 service.post("/register", async (req, res) => {
     
-    const { iduser, idpet, nomeservice, descricao, valor, imagemservice } = req.body;
+    const { iduser, idpet, nomeservice, tipo, descricao, valor, imagemservice } = req.body;
 
     const alreadyExistsService = await Service.findOne({ where: { nomeservice } }).catch(
         (err) => {
@@ -21,7 +21,7 @@ service.post("/register", async (req, res) => {
         return res.status(409).json({ message: "Serviço já Cadastrado!" });
     }
 
-    const newService = new Service({ iduser, idpet, nomeservice, descricao, valor, imagemservice });
+    const newService = new Service({ iduser, idpet, nomeservice, tipo, descricao, valor, imagemservice });
     const savedService = await newService.save().catch((err) => {
         console.log("Error: ", err);
         res.status(500).json({ error: "Desculpe! Não foi possível cadastrar esse Serviço" });
@@ -32,6 +32,26 @@ service.post("/register", async (req, res) => {
 
 service.get('/find', async (req, res) => {
     const services = await Service.findAll().catch(
+        (err) => {
+            console.log(err)
+        }
+    );
+
+    if (services){
+        return res.json({services})
+    } else {
+        return null
+    }
+})
+
+service.get('/findByService', async (req, res) => {
+    const idService = req.query.idService;
+    const services = await Service.findAll({
+        where: {
+            idService: idService
+        },
+        include: [{model: Service}]
+    }).catch(
         (err) => {
             console.log(err)
         }
