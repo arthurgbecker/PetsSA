@@ -21,15 +21,15 @@ const Agendamento = ({navigation}) => {
     onScreenLoad()
   }, [state.update])
 
-  const seeReview = async (item) => {
-    await dispatch({type: 'setService', payload: item});
-    navigation.navigate('Visualizaservice');
-  }
+  // const seeService = async (item) => {
+  //   await dispatch({type: 'setService', payload: item});
+  //   navigation.navigate('Visualizaservice');
+  // }
 
-  const newReview = async (item) => {
-    await dispatch({type: 'setService', payload: item});
-    navigation.navigate('Visualizaservice')
-  }
+  // const newService = async (item) => {
+  //   await dispatch({type: 'setService', payload: item});
+  //   navigation.navigate('Visualizaservice')
+  // }
 
   return (
     <View style={styles.view}>
