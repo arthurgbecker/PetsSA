@@ -44,6 +44,7 @@ const Routes = () => {
                     tabBarIcon: () => (<Ionicons name='calendar' size={24} color='#4536E3' />)
                 }}
             />
+            
             {state.isAdmin ? (
                 <Tab.Screen
                     name="Petshop"

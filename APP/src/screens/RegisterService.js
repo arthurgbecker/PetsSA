@@ -9,8 +9,8 @@ import * as ImagePicker from "expo-image-picker";
 const RegisterService = ({ navigation }) => {
     const [imagemservice, setImagemservice] = useState('');
 
-    const [iduser, setIduser] = useState('');
-    const [idpet, setIdpet] = useState('');
+    // const [iduser, setIduser] = useState('');
+    // const [idpet, setIdpet] = useState('');
     const [nomeservice, setNomeservice] = useState('');
     const [tipo, setTipo] = useState('');
     const [descricao, setDescricao] = useState('');
@@ -21,8 +21,8 @@ const RegisterService = ({ navigation }) => {
     const onRegisterPressed = async () => {
         try {
             const authData = await api.post("/service/register", {
-                iduser: iduser,
-                idpet: idpet,
+                // iduser: iduser,
+                // idpet: idpet,
                 nomeservice: nomeservice,
                 tipo: tipo,
                 descricao: descricao,
@@ -75,7 +75,7 @@ const RegisterService = ({ navigation }) => {
                 <Text style={styles.buttonText}>Escolha uma imagem para seu serviço</Text>
             </TouchableOpacity>
 
-            <CustomInput
+            {/* <CustomInput
                 placeholder="id User"
                 value={iduser}
                 setValue={setIduser}
@@ -85,7 +85,7 @@ const RegisterService = ({ navigation }) => {
                 placeholder="id Pet"
                 value={idpet}
                 setValue={setIdpet}
-            />
+            /> */}
 
             <CustomInput
                 placeholder="Nome do Serviço"
