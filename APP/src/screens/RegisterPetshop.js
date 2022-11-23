@@ -44,14 +44,6 @@ const RegisterPetshop = ({ navigation }) => {
     return (
         <View style={styles.view}>
 
-
-            {/* <Image
-                source={Logo}
-                style={[styles.logo, { height: height * 0.3 }]}
-                resizeMode="contain"
-            /> */}
-
-
             <Text style={styles.descricao1}>Pets Sa</Text>
             <Text style={styles.descricao}>CNPJ: 111111111111</Text>
             <Text style={styles.descricao}>E-mail: petssa@gmail.com</Text>
@@ -67,53 +59,7 @@ const RegisterPetshop = ({ navigation }) => {
                     onPress={() => navigation.navigate("RegisterService")}>
                     Serviços
                 </Ionicons.Button>
-
-                <Ionicons.Button style={styles.iconbutton}
-                    name="add-circle"
-                    backgroundColor="#AFF4D4"
-                    color='#4536E3'
-                    onPress={() => navigation.navigate("Home")}>
-                    Planos
-                </Ionicons.Button>
             </View>
-            {/* <CustomInput
-                placeholder="Nome da PetShop"
-                value={nomepetshop}
-                setValue={setNomepetshop}
-            />
-
-            <CustomInput
-                placeholder="CNPJ"
-                value={cnpj}
-                setValue={setCNPJ}
-            />
-
-            <CustomInput
-                placeholder="E-mail"
-                value={email}
-                setValue={setEmail}
-            />
-
-            <CustomInput
-                placeholder="Telefone"
-                value={telefone}
-                setValue={setTelefone}
-            />
-
-            <CustomInput
-                placeholder="Endereço"
-                value={endereco}
-                setValue={setEndereco}
-            />
-
-            <CustomInput
-                placeholder="Nome do Proprietário"
-                value={proprietario}
-                setValue={setProprietario}
-            />
-
-            <CustomButton text="Salvar" onPress={onRegisterPressed} /> */}
-
 
         </View>
     )

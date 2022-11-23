@@ -3,36 +3,36 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../context/authContext'
 import api from '../api';
 import CustomButton from '../components/CustomButton';
-import { Ionicons  } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 
-const Pets = ({navigation}) => {
+const Pets = ({ navigation }) => {
   const { state, dispatch } = useContext(Context);
-  const [ pets, setPets ] = useState({})
+  const [pets, setPets] = useState({})
 
   useEffect(() => {
     const onScreenLoad = async () => {
       const list = await api.get('/pet/find')
       setPets(list.data.pets)
-      dispatch({type: "update", payload: false})
+      dispatch({ type: "update", payload: false })
       console.log(list);
     }
     onScreenLoad()
   }, [state.update])
 
   const seeReview = async (item) => {
-    await dispatch({type: 'setPet', payload: item});
+    await dispatch({ type: 'setPet', payload: item });
     navigation.navigate('Visualizarpet');
   }
 
   const newReview = async (item) => {
-    await dispatch({type: 'setPet', payload: item});
+    await dispatch({ type: 'setPet', payload: item });
     navigation.navigate('Visualizarpet')
   }
 
   return (
     <View style={styles.view}>
       <Text style={styles.textpet}>Lista de Pets</Text>
-      
+
       <FlatList
         data={pets}
         renderItem={({ item }) => {
@@ -46,19 +46,20 @@ const Pets = ({navigation}) => {
         }}
         keyExtractor={(item) => item.id}
       />
-
-      {state.isAdmin ? (
-        <></>
-      ) : (
-        <Ionicons.Button style={styles.iconbutton}
-          name="add-circle" 
-          backgroundColor="#AFF4D4" 
-          color='#4536E3'
-          onPress={() => navigation.navigate("RegisterPet")}>
+      <View style={styles.botoes}>
+        {state.isAdmin ? (
+          <></>
+        ) : (
+          <Ionicons.Button style={styles.iconbutton}
+            name="add-circle"
+            backgroundColor="#AFF4D4"
+            color='#4536E3'
+            onPress={() => navigation.navigate("RegisterPet")}>
             Cadastrar Pet
-        </Ionicons.Button>
+          </Ionicons.Button>
 
-      )}
+        )}
+      </View>
     </View>
   )
 }
@@ -72,10 +73,17 @@ const styles = StyleSheet.create({
     fontSize: 18,
     margin: 10
   },
+  botoes: {
+    margin: 40,
+    flexDirection: 'row',
+    flex: 3,
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+  },
   view: {
     flex: 1,
     justifyContent: "center",
-   
+
   },
   container: {
     flexDirection: "row",
@@ -85,7 +93,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#9F94FC',
     alignItems: 'center',
-   
+
   },
   text: {
     height: 65,

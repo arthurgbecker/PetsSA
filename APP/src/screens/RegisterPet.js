@@ -228,6 +228,7 @@ const styles = StyleSheet.create({
     view: {
         alignItems: 'center',
         padding: 20,
+        flex: 1
     },
     logo: {
         width: '70%',

@@ -96,7 +96,7 @@ const RegisterUser = ({ navigation }) => {
             />
 
             <CustomInput
-                placeholder="Confrime Password"
+                placeholder="Confirme Password"
                 value={confirmepassword}
                 setValue={setConfirmeassword}
                 secureTextEntry={true}
@@ -129,7 +129,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 20,
         backgroundColor: '#9F94FC',
-        flex: 3
     },
     logo: {
         width: '70%',
