@@ -33,6 +33,11 @@ const Service = connection.define(
             type: Sequelize.STRING,
             allowNull: false
         },
+        
+        tipo: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
 
         descricao: {
             type: Sequelize.STRING,

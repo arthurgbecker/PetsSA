@@ -48,7 +48,7 @@ const Home = ({navigation}) => {
 
               <TouchableOpacity style={styles.text} onPress={() => seeReview(item)}>
               <Text style={styles.title}>{item.nomeservice}</Text>
-                <Text style={styles.item}>Descrição: {item.descricao}</Text>
+                <Text style={styles.item}>Descrição: {item.tipo}</Text>
                 <Text style={styles.item}>Valor: R${item.valor}</Text>
                 <Text style={styles.item}>Ver detalhes</Text>
               </TouchableOpacity>

@@ -9,7 +9,8 @@ let initialState = {
     token: '',
     idUser: '',
     idRestaurant: '',
-    idService: ''
+    idService: '',
+    idPet: '',
 }
 
 const reducer = (state, action) => {
@@ -24,6 +25,11 @@ const reducer = (state, action) => {
                 ...state,
                 idService: action.payload.id
             }
+            case "setPet":
+                return {
+                    ...state,
+                    idPet: action.payload.id
+                }
         case "verify":
             return { 
                 ...state, 

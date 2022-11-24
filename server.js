@@ -13,6 +13,8 @@ const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, console.log("Servidor PETSSA rodando em " + process.env.NODE_ENV + " na porta " + PORT + "..."));
 
+server.use(express.static('images'));
+
 // Define Routes
 server.use(cors());
 server.use(bodyParser.urlencoded({ extended: true }));

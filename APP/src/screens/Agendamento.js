@@ -47,8 +47,8 @@ const Agendamento = ({navigation}) => {
                     }}
                 />
 
-                <Text style={styles.title}>{item.nomeservice}</Text>
-                <Text style={styles.item}>Descrição: {item.descricao}</Text>
+                <Text style={styles.title}>{item.nomeservice}</Text>              
+                <Text style={styles.item}>{item.descricao}</Text>
                 <Text style={styles.item}>Valor: R${item.valor}</Text>
              
             </View>

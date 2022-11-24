@@ -1,13 +1,13 @@
-import { StyleSheet, View, Image, useWindowDimensions, Picker, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, View, ScrollView, Image, useWindowDimensions, Picker, TouchableOpacity, Text } from "react-native";
 import React, { useState } from 'react';
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import api from '../api'
+import * as DocumentPicker from 'expo-document-picker';
+import * as FileSystem from 'expo-file-system';
 
-import * as ImagePicker from "expo-image-picker";
 
 const RegisterPet = ({ navigation }) => {
-    const [imagempet, setImagempet] = useState('');
 
     const [nome, setNome] = useState('');
     const [especie, setEspecie] = useState('');
@@ -23,7 +23,7 @@ const RegisterPet = ({ navigation }) => {
     const [agressivo, setAgressivo] = useState('');
     const [observacao, setObservacao] = useState('');
 
-    
+
     const { height } = useWindowDimensions();
 
     const onRegisterPressed = async () => {
@@ -42,7 +42,7 @@ const RegisterPet = ({ navigation }) => {
                 perfume: perfume,
                 agressivo: agressivo,
                 observacao: observacao,
-                imagempet: imagempet
+
             });
             if (authData.status === 200) {
                 console.log(authData.data.message)
@@ -56,39 +56,79 @@ const RegisterPet = ({ navigation }) => {
         catch (e) {
             console.log(e)
         }
+
     }
 
-    const imagePickerCall = async () => {
-        const data = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.All,
-          allowsEditing: true,
-          aspect: [4, 3],
-          quality: 1,
-        });
-    
-        if (data.cancelled) {
-          return;
-        }
-    
-        setImagempet(data);
-        console.log(data);
+    const [doc, setDoc] = useState();
+    const pickDocument = async () => {
+        let result = await DocumentPicker.getDocumentAsync({
+            type: "*/*",
+            copyToCacheDirectory: true
+        })
+            .then(response => {
+                if (response.type == 'success') {
+                    let { name, size, uri } = response;
+                    let nameParts = name.split('.');
+                    let fileType = nameParts[nameParts.length - 1];
+                    var fileToUpload = {
+                        name: name,
+                        size: size,
+                        uri: uri,
+                        type: "application/" + fileType
+                    };
+                    console.log(fileToUpload, '...............file')
+                    setDoc(fileToUpload);
+                }
+            });
+        // console.log(result);
+        console.log("Doc: " + doc.uri);
+       // postDocument();
+    }
+
+    // const postDocument = () => {
+    //     var formData = new FormData();
+    //     formData.append("image", doc);
+    //     api.post('/upload', formData, {
+    //         headers: {
+    //             'Content-Type': 'multipart/form-data'
+    //         }
+    //     })
+    //     console.log(doc)
+
+    const postDocument = () => {
+        const url = "http://10.3.60.35:3000/upload";
+        const fileUri = doc.uri;
+        const formData = new FormData();
+        formData.append('document', doc);
+        const options = {
+            method: 'POST',
+            body: formData,
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'multipart/form-data',
+            },
+        };
+        console.log(formData);
+
+        fetch(url, options).catch((error) => console.log(error));
+        postDocument();
     }
 
     return (
-        <View style={styles.view}>
-            
-            <Image style={styles.imagePet}
-                source={{
-                uri: imagempet
-                    ? imagempet.uri
-                    : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-contact-outline-512.png"
-                }}
-            />
+        <ScrollView style={styles.view}>
+            <View style={styles.viewimagem}>
+                <Image style={styles.imagePet}
+                    source={{
+                        uri: doc
+                            ? doc.uri
+                            : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-contact-outline-512.png"
+                    }}
+                />
 
-            <TouchableOpacity style={styles.button} onPress={imagePickerCall}>
-                <Text style={styles.buttonText}>Escolha uma imagem do seu Pet</Text>
-            </TouchableOpacity>
-
+                <TouchableOpacity style={styles.button} onPress={pickDocument}>
+                    <Text style={styles.buttonText}>Escolha uma imagem do seu Pet</Text>
+                </TouchableOpacity>
+            </View>
             <CustomInput
                 placeholder="Nome do Pet"
                 value={nome}
@@ -99,14 +139,14 @@ const RegisterPet = ({ navigation }) => {
                 selectedValue={especie}
                 style={styles.picker}
                 onValueChange={setEspecie}
-                
+
             >
-                <Picker.Item label="Espécie" value=""/>
+                <Picker.Item label="Espécie" value="" />
                 <Picker.Item label="Cachorro" value="Cachorro" />
                 <Picker.Item label="Gato" value="Gato" />
-                
+
             </Picker>
-            
+
             <Picker
                 selectedValue={raca}
                 style={styles.picker}
@@ -119,7 +159,7 @@ const RegisterPet = ({ navigation }) => {
                 <Picker.Item label="Pit bull" value="Pit bull" />
                 <Picker.Item label="Poodle" value="Poodle" />
                 <Picker.Item label="Pinscher" value="Pinscher" />
-                
+
             </Picker>
 
             <Picker
@@ -136,7 +176,7 @@ const RegisterPet = ({ navigation }) => {
                 <Picker.Item label="Caramelo" value="Caramelo" />
                 <Picker.Item label="Marrom" value="Marrom" />
                 <Picker.Item label="Malhado" value="Malhado" />
-               
+
             </Picker>
 
             <Picker
@@ -147,7 +187,7 @@ const RegisterPet = ({ navigation }) => {
                 <Picker.Item label="Sexo" value="" />
                 <Picker.Item label="Macho" value="Macho" />
                 <Picker.Item label="Fêmea" value="Fêmea" />
-                
+
             </Picker>
 
             <CustomInput
@@ -165,7 +205,7 @@ const RegisterPet = ({ navigation }) => {
                 <Picker.Item label="Pequeno" value="Pequeno" />
                 <Picker.Item label="Médio" value="Médio" />
                 <Picker.Item label="Grande" value="Grande" />
-                
+
             </Picker>
 
             <CustomInput
@@ -182,7 +222,7 @@ const RegisterPet = ({ navigation }) => {
                 <Picker.Item label="Castrado?" value="" />
                 <Picker.Item label="Sim" value="Sim" />
                 <Picker.Item label="Não" value="Não" />
-                
+
             </Picker>
 
             <CustomInput
@@ -199,7 +239,7 @@ const RegisterPet = ({ navigation }) => {
                 <Picker.Item label="Pode colocar perfume?" value="" />
                 <Picker.Item label="Sim" value="Sim" />
                 <Picker.Item label="Não" value="Não" />
-                
+
             </Picker>
 
             <Picker
@@ -210,7 +250,7 @@ const RegisterPet = ({ navigation }) => {
                 <Picker.Item label="É agressivo?" value="" />
                 <Picker.Item label="Sim" value="Sim" />
                 <Picker.Item label="Não" value="Não" />
-                
+
             </Picker>
 
             <CustomInput
@@ -220,15 +260,18 @@ const RegisterPet = ({ navigation }) => {
             />
 
             <CustomButton text="Register" onPress={onRegisterPressed} />
-        </View>
+        </ScrollView>
     )
 };
 
 const styles = StyleSheet.create({
     view: {
-        alignItems: 'center',
+
         padding: 20,
         flex: 1
+    },
+    viewimagem: {
+        alignItems: 'center'
     },
     logo: {
         width: '70%',

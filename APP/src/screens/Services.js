@@ -46,8 +46,6 @@ const Services = ({navigation}) => {
                 />
 
               <TouchableOpacity style={styles.text}>
-                {/* <Text style={styles.item}>ip User - {item.iduser}</Text>
-                <Text style={styles.item}>ip Pet - {item.idpet}</Text> */}
                 <Text style={styles.item}>Nome do Serviço - {item.nomeservice}</Text>
                 <Text style={styles.item}>Descrição - {item.descricao}</Text>
                 <Text style={styles.item}>Valor - R${item.valor}</Text>

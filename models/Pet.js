@@ -75,10 +75,10 @@ const Pet = connection.define(
             type: Sequelize.STRING,
             allowNull: false
         },
-        imagempet: {
-            type: Sequelize.BLOB('long'),
-            allowNull: false
-        }
+        // imagempet: {
+        //     type: Sequelize.BLOB('long'),
+        //     allowNull: false
+        // }
     }
 );
 

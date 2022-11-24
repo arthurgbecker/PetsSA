@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity, Image, useWindowDimensions, Picker, ScrollView} from 'react-native'
+import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity, Image, useWindowDimensions, Picker, ScrollView } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../context/authContext'
 import api from '../api';
@@ -26,7 +26,7 @@ const Visualizarpet = ({ navigation }) => {
   const { height } = useWindowDimensions();
   useEffect(() => {
     const onScreenLoad = async () => {
-      const list = await api.get('/pet/find', {
+      const list = await api.get('/pet/findPet', {
         params: {
           idPet: state.idPet,
         }
@@ -84,13 +84,13 @@ const Visualizarpet = ({ navigation }) => {
 
   return (
     <ScrollView style={styles.view}>
-      <Text style={styles.textpet}>Seu Pet</Text>
-
-      <Image style={styles.imagePet}
-        source={{
-          uri: "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-contact-outline-512.png"
-        }}
-      />
+      <View style={styles.viewimagem}>
+        <Image style={styles.imagePet}
+          source={{
+            uri: "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-contact-outline-512.png"
+          }}
+        />
+      </View>
       <CustomInput
         placeholder="Nome do Pet"
         value={nome}
@@ -223,71 +223,56 @@ const Visualizarpet = ({ navigation }) => {
 
       <CustomButton text="Salvar Alterações" onPress={onRegisterPressed} />
 
-
-
-      {/* 
-      <Text style={styles.title}>{item.nome}</Text>
-      <Text style={styles.item}>Espécie - {item.especie}</Text>
-      <Text style={styles.item}>Raça - {item.raca}</Text>
-      <Text style={styles.item}>Cor - {item.cor}</Text>
-      <Text style={styles.item}>Sexo - {item.sexo}</Text>
-      <Text style={styles.item}>Peso em Kg - {item.peso}</Text>
-      <Text style={styles.item}>Porte - {item.porte}</Text>
-      <Text style={styles.item}>Nascimento - {item.nascimento}</Text>
-      <Text style={styles.item}>Castrado? - {item.castrado}</Text>
-      <Text style={styles.item}>Alergias? - {item.alergia}</Text>
-      <Text style={styles.item}>Perfume? - {item.perfume}</Text>
-      <Text style={styles.item}>Agressivo? - {item.agressivo}</Text>
-      <Text style={styles.item}>OBS: {item.observacao}</Text> */}
-
-
     </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   view: {
+    padding: 20,
+    flex: 1
 
-      padding: 'auto',
-      flex: 1
+  },
+  viewimagem: {
+    alignItems: 'center'
   },
   logo: {
-      width: '70%',
-      maxWidth: 300,
-      maxHeight: 200,
+    width: '70%',
+    maxWidth: 300,
+    maxHeight: 200,
   },
   loginText: {
-      fontWeight: "bold",
-      color: "#6200ee",
+    fontWeight: "bold",
+    color: "#6200ee",
   },
   picker: {
-      marginVertical: 5,
-      borderRadius: 5,
-      backgroundColor: 'white',
-      textAlignVertical: 'center',
-      padding: 15,
-      fontSize: '14px',
-      fontWeight: 'bold',
-      borderWidth: 0,
-      height: 50,
-      width: '100%'
+    marginVertical: 5,
+    borderRadius: 5,
+    backgroundColor: 'white',
+    textAlignVertical: 'center',
+    padding: 15,
+    fontSize: '14px',
+    fontWeight: 'bold',
+    borderWidth: 0,
+    height: 50,
+    width: '100%'
   },
   imagePet: {
-      width: 100,
-      height: 100,
-      borderRadius: 50
+    width: 100,
+    height: 100,
+    borderRadius: 50,
   },
   button: {
-      width: 250,
-      height: 50,
-      borderRadius: 3,
-      backgroundColor: "#7159c1",
-      justifyContent: "center",
-      alignItems: "center",
-      marginTop: 20
+    width: 250,
+    height: 50,
+    borderRadius: 3,
+    backgroundColor: "#7159c1",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20
   },
   buttonText: {
-      color: "#fff"
+    color: "#fff"
   },
 });
 

@@ -31,7 +31,7 @@ const Pets = ({ navigation }) => {
 
   return (
     <View style={styles.view}>
-      <Text style={styles.textpet}>Lista de Pets</Text>
+      <Text style={styles.textpet}>Meus Pets</Text>
 
       <FlatList
         data={pets}
@@ -74,21 +74,19 @@ const styles = StyleSheet.create({
     margin: 10
   },
   botoes: {
-    margin: 40,
-    flexDirection: 'row',
+    margin: 10,
+    flexDirection: 'column-reverse',
     flex: 3,
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
+    alignItems: 'center',
   },
   view: {
     flex: 1,
     justifyContent: "center",
-
   },
   container: {
     flexDirection: "row",
     flexWrap: "wrap",
-    margin: 5,
+    margin: 15,
     padding: 10,
     borderRadius: 10,
     backgroundColor: '#9F94FC',

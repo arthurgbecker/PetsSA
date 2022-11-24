@@ -9,7 +9,7 @@ pet.get('/', (req, res) => {
 
 pet.post("/register", async (req, res) => {
     
-    const { nome, especie, raca, cor, sexo, peso, porte, nascimento, castrado, alergia, perfume, agressivo, observacao, imagempet } = req.body;
+    const { nome, especie, raca, cor, sexo, peso, porte, nascimento, castrado, alergia, perfume, agressivo, observacao } = req.body;
 
     const alreadyExistsPet = await Pet.findOne({ where: { nome } }).catch(
         (err) => {
@@ -21,7 +21,7 @@ pet.post("/register", async (req, res) => {
         return res.status(409).json({ message: "Pet já Cadastrado!" });
     }
 
-    const newPet = new Pet({ nome, especie, raca, cor, sexo, peso, porte, nascimento, castrado, alergia, perfume, agressivo, observacao, imagempet });
+    const newPet = new Pet({ nome, especie, raca, cor, sexo, peso, porte, nascimento, castrado, alergia, perfume, agressivo, observacao });
     const savedPet = await newPet.save().catch((err) => {
         console.log("Error: ", err);
         res.status(500).json({ error: "Desculpe! Não foi possível cadastrar esse pet" });
@@ -32,6 +32,23 @@ pet.post("/register", async (req, res) => {
 
 pet.get('/find', async (req, res) => {
     const pets = await Pet.findAll().catch(
+        (err) => {
+            console.log(err)
+        }
+    );
+
+    if (pets){
+        return res.json({pets})
+    } else {
+        return null
+    }
+})
+
+pet.get('/findPet', async (req, res) => {
+    const id = req.query.idPet;
+    const pets = await Pet.findAll({
+        where: { id: id }
+    }).catch(
         (err) => {
             console.log(err)
         }

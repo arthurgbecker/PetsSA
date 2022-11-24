@@ -1,20 +1,9 @@
-import { StyleSheet, View, Text, Image, useWindowDimensions, TouchableOpacity, Picker } from "react-native";
+import { StyleSheet, View, ScrollView, Text, Image, useWindowDimensions, TouchableOpacity, Picker } from "react-native";
 import React, { useContext, useState, useEffect } from 'react'
 import { Context } from '../context/authContext'
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import api from '../api'
-
-
-// const Home = () => {
-  
-//     const { state, dispatch } = useContext(Context);
-//     return (
-//       <View>
-//         <Text>Olá, {state.nome}</Text>
-//       </View>
-//     )
-// }
 
 const User = ({ navigation }) => {
 
@@ -77,7 +66,7 @@ const User = ({ navigation }) => {
     }
 
     return (
-        <View style={styles.view}>
+        <ScrollView style={styles.view}>
             {/* <Image
                 
             /> */}
@@ -133,13 +122,13 @@ const User = ({ navigation }) => {
                
             <CustomButton text="Salvar Alterações" onPress={onRegisterPressed} />
             
-        </View>
+        </ScrollView>
     )
 };
 
 const styles = StyleSheet.create({
     view: {
-        alignItems: 'center',
+   
         padding: 20,
         backgroundColor: '#9F94FC'
     },

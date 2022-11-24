@@ -8,4 +8,5 @@ CREATE USER 'petssa'@'localhost' identified by 'petssa';
 GRANT ALL PRIVILEGES ON petssa.* to 'petssa'@'localhost';
 
 select * from petssa.users;
+select * from petssa.pets;
 select * from petssa.services;

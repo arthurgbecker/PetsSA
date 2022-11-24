@@ -57,7 +57,7 @@ const RegisterPetshop = ({ navigation }) => {
                     backgroundColor="#AFF4D4"
                     color='#4536E3'
                     onPress={() => navigation.navigate("RegisterService")}>
-                    Serviços
+                    Serviço
                 </Ionicons.Button>
             </View>
 
@@ -71,11 +71,10 @@ const styles = StyleSheet.create({
         padding: 20,   
     },
     botoes: {
-        margin: 40,
-        flexDirection: 'row',
+        margin: 10,
+        flexDirection: 'column-reverse',
         flex: 3,
-        justifyContent: 'space-between',
-        alignItems: 'flex-end',  
+        alignItems: 'center',  
     },
     logo: {
         width: '70%',
