@@ -81,7 +81,7 @@ const RegisterPet = ({ navigation }) => {
                 }
             });
         // console.log(result);
-        console.log("Doc: " + doc.uri);
+        // console.log("Doc: " + doc.uri);
        // postDocument();
     }
 

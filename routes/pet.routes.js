@@ -61,4 +61,18 @@ pet.get('/findPet', async (req, res) => {
     }
 })
 
+pet.post('/delete', async(req, res) => {
+    const id = req.body.id;
+    const deletedPet = await Pet.destroy({
+        where: {
+            id: id
+        }
+    })
+    if (deletedPet) {
+        res.status(200).json({ message: "Pet deletado com Sucesso!"});
+    } else {
+        res.status(500).json({ error: "Não foi possível deletar o Pet"});
+    }
+})
+
 export default pet;

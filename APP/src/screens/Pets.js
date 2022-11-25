@@ -29,6 +29,23 @@ const Pets = ({ navigation }) => {
     navigation.navigate('Visualizarpet')
   }
 
+  const deletePet = async (item) => {
+    try {
+      const data = await api.post('/pet/delete', {
+        id: item.id
+      });
+      if (data.status === 200) {
+        alert(data.data.message)
+        dispatch({ type: "update", payload: false }) // atualiza
+      } else {
+        console.log(data)
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+
   return (
     <View style={styles.view}>
       <Text style={styles.textpet}>Meus Pets</Text>
@@ -38,10 +55,24 @@ const Pets = ({ navigation }) => {
         renderItem={({ item }) => {
           return (
             <View style={styles.container}>
-              <TouchableOpacity style={styles.text} onPress={() => seeReview(item)}>
-                <Text style={styles.title}>{item.nome}</Text>
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity style={styles.text} onPress={() => seeReview(item)}>
+              
+              <View style={styles.body}>
+                <View style={styles.dadosPet}>
+                  <Text style={styles.title}>{item.nome}</Text>
+                </View>
+                <View style={styles.trash}>
+                  <Ionicons
+                    name='trash'
+                    size={24}
+                    style={{ margin: 20 }}
+                    color="#4536E3"
+                    onPress={() => deletePet(item)}/>
+                </View>
+              </View>
+
+            </TouchableOpacity>
+          </View>
           )
         }}
         keyExtractor={(item) => item.id}
@@ -73,20 +104,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     margin: 10
   },
-  botoes: {
-    margin: 10,
-    flexDirection: 'column-reverse',
-    flex: 3,
-    alignItems: 'center',
-  },
   view: {
     flex: 1,
     justifyContent: "center",
+
   },
   container: {
     flexDirection: "row",
     flexWrap: "wrap",
-    margin: 15,
+    margin: 5,
     padding: 10,
     borderRadius: 10,
     backgroundColor: '#9F94FC',
@@ -95,7 +121,7 @@ const styles = StyleSheet.create({
   },
   text: {
     height: 65,
-    width: '80%',
+    width: '100%',
     justifyContent: "center",
   },
   title: {
@@ -109,6 +135,25 @@ const styles = StyleSheet.create({
     margin: 5,
     padding: 8,
     borderRadius: 10,
+  },
+  delete: {
+    margin: 5,
+    padding: 5,
+    borderRadius: 5,
+
+  },
+  trash: {
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  dadosPet:{
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  body: {
+    flex: 1,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
   }
 })
 

@@ -29,6 +29,21 @@ const Services = ({navigation}) => {
     navigation.navigate('VisualizaService')
   }
 
+  const deleteService = async (item) => {
+    try {
+        const data = await api.post('/service/delete', {
+            id: item.id
+        });
+        if (data.status === 200) {
+            alert(data.data.message)
+            dispatch({type: "update", payload: false}) // atualiza
+        } else {
+            console.log(data)
+        }
+    } catch (err) {
+        console.log(err);
+    }
+  }
   return (
     <View style={styles.view}>
       <Text style={styles.textservice}>Lista de Serviços</Text>
@@ -49,6 +64,13 @@ const Services = ({navigation}) => {
                 <Text style={styles.item}>Nome do Serviço - {item.nomeservice}</Text>
                 <Text style={styles.item}>Descrição - {item.descricao}</Text>
                 <Text style={styles.item}>Valor - R${item.valor}</Text>
+
+                <Ionicons.Button style={styles.delete}
+                  name="trash" 
+                  backgroundColor="#4536E3" 
+                  color='#9F94FC'
+                  onPress={() => deleteService(item)}>
+                </Ionicons.Button>
               </TouchableOpacity>
             </View>
           )
@@ -120,7 +142,15 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 10,
-  }
+  },
+  delete: {
+    flex: 1,
+    height: 30,
+    width: 30,
+    margin: 5,
+    padding: 5,
+    borderRadius: 5,
+  },
 })
 
 export default Services;

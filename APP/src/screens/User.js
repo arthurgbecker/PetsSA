@@ -65,6 +65,23 @@ const User = ({ navigation }) => {
         }
     }
 
+    const deleteUser = async () => {
+        try {
+            const data = await api.post('/user/delete', {
+                idUser: state.idUser
+            });
+            if (data.status === 200) {
+                alert(data.data.message)
+                dispatch({type: "logOut"})
+            } else {
+                console.log(data)
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+
     return (
         <ScrollView style={styles.view}>
             {/* <Image
@@ -121,6 +138,7 @@ const User = ({ navigation }) => {
             />
                
             <CustomButton text="Salvar Alterações" onPress={onRegisterPressed} />
+            <CustomButton text="Deleter Usuário" onPress={deleteUser} />
             
         </ScrollView>
     )

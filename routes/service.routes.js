@@ -63,4 +63,20 @@ service.get('/findService', async (req, res) => {
     }
 })
 
+service.post('/delete', async(req, res) => {
+    const id = req.body.idService;
+    const deletedService = await Service.destroy({
+        where: {
+            id: id
+        }
+    })
+    if (deletedService) {
+        res.status(200).json({ message: "Serviço deletado com Sucesso!"});
+    } else {
+        res.status(500).json({ error: "Não foi possível deletar o serviço."});
+    }
+}) 
+
+
+
 export default service;

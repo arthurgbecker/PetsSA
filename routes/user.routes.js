@@ -54,6 +54,20 @@ user.post('/register', async (req, res) => {
     } 
 
 
-});
+})
+
+user.post('/delete', async(req, res) => {
+    const id = req.body.idUser;
+    const deletedUser = await User.destroy({
+        where: {
+            id: id
+        }
+    })
+    if (deletedUser) {
+        res.status(200).json({ message: "Usuário deletado com Sucesso. Sua sessão será !"});
+    } else {
+        res.status(500).json({ error: "Não foi possível deletar o usuário"});
+    }
+})
 
 export default user;
