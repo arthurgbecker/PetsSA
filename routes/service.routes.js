@@ -9,7 +9,7 @@ service.get('/', (req, res) => {
 
 service.post("/register", async (req, res) => {
     
-    const { iduser, idpet, nomeservice, tipo, descricao, valor, imagemservice } = req.body;
+    const {  nomeservice, tipo, descricao, valor, imagemservice } = req.body;
 
     const alreadyExistsService = await Service.findOne({ where: { nomeservice } }).catch(
         (err) => {
@@ -21,7 +21,7 @@ service.post("/register", async (req, res) => {
         return res.status(409).json({ message: "Serviço já Cadastrado!" });
     }
 
-    const newService = new Service({ iduser, idpet, nomeservice, tipo, descricao, valor, imagemservice });
+    const newService = new Service({  nomeservice, tipo, descricao, valor, imagemservice });
     const savedService = await newService.save().catch((err) => {
         console.log("Error: ", err);
         res.status(500).json({ error: "Desculpe! Não foi possível cadastrar esse Serviço" });

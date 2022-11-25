@@ -12,12 +12,12 @@ const Stack = createNativeStackNavigator()
 const ServiceRoutes = ({navigation}) => {
     return (
         <Stack.Navigator screenOptions={{headerShown: false}}>
-            {/* <Stack.Screen name='HomeMain' component={Home}/> */}
+            <Stack.Screen name='Home' component={Home}/>
             <Stack.Screen name='RegisterPetshop' component={RegisterPetshop}/>
-            {/* <Stack.Screen name='Home' component={Home}/> */}
             <Stack.Screen name='Services' component={Services}/>
-            <Stack.Screen name='RegisterService' component={RegisterService}/>
             <Stack.Screen name='VisualizaService' component={VisualizaService}/>
+            <Stack.Screen name='RegisterService' component={RegisterService}/> 
+            {/* <Stack.Screen name='HomeMain' component={Home}/> */}
 
         </Stack.Navigator>
     )

@@ -31,12 +31,15 @@ const Routes = () => {
             )
         }}>
             <Tab.Screen
-                name="Home"
-                component={Home}
+                name="ServiceRoutes"
+                component={ServiceRoutes}
                 options={{
+                    headerTitle:"Home",
+                    tabBarLabel: 'Home',
                     tabBarIcon: () => (<Ionicons name='home' size={24} color='#4536E3' />)
                 }}
             />
+
 
             <Tab.Screen
                 name="Agendamento"
@@ -57,7 +60,7 @@ const Routes = () => {
             {state.isAdmin ? (
                 <Tab.Screen
                     name="Petshop"
-                    component={ServiceRoutes}
+                    component={RegisterPetshop}
                     options={{
                         tabBarIcon: () => (<Ionicons name='business' size={24} color='#4536E3' />)
                     }}
