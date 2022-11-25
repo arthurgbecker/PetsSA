@@ -3,6 +3,7 @@ import Petshop from "./models/petshop.js";
 import Pet from "./models/Pet.js";
 import Service from "./models/Service.js";
 import User from "./models/User.js";
+import Agendamento from "./models/Agendamento.js"
 
 const migrate = async () => {
     try {

@@ -10,6 +10,7 @@ import PetRoutes from './PetRoutes';
 import RegisterPetshop from './RegisterPetshop';
 import ServiceRoutes from './ServiceRoutes'
 import Agendamento from './Agendamento';
+import RegisterAgendamento from './RegisterAgendamento';
 import User from './User';
 import UserAdmin from './UserAdmin';
 
@@ -31,7 +32,7 @@ const Routes = () => {
         }}>
             <Tab.Screen
                 name="Home"
-                component={ServiceRoutes}
+                component={Home}
                 options={{
                     tabBarIcon: () => (<Ionicons name='home' size={24} color='#4536E3' />)
                 }}
@@ -42,6 +43,14 @@ const Routes = () => {
                 component={Agendamento}
                 options={{
                     tabBarIcon: () => (<Ionicons name='calendar' size={24} color='#4536E3' />)
+                }}
+            />
+
+            <Tab.Screen
+                name="Registro"
+                component={RegisterAgendamento}
+                options={{
+                    tabBarIcon: () => (<Ionicons name='hammer' size={24} color='#4536E3' />)
                 }}
             />
             
