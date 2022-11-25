@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { Context } from '../context/authContext'
 
 import Home from './Home';
-import Visualizaservice from './VisualizaService';
+import VisualizaService from './VisualizaService';
 import PetRoutes from './PetRoutes';
 import RegisterPetshop from './RegisterPetshop';
 import ServiceRoutes from './ServiceRoutes'
@@ -31,7 +31,7 @@ const Routes = () => {
         }}>
             <Tab.Screen
                 name="Home"
-                component={Home}
+                component={ServiceRoutes}
                 options={{
                     tabBarIcon: () => (<Ionicons name='home' size={24} color='#4536E3' />)
                 }}

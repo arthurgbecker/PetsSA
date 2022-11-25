@@ -59,6 +59,7 @@ const RegisterPetshop = ({ navigation }) => {
                     onPress={() => navigation.navigate("RegisterService")}>
                     Serviço
                 </Ionicons.Button>
+
             </View>
 
         </View>

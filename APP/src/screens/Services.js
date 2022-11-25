@@ -20,13 +20,13 @@ const Services = ({navigation}) => {
   }, [state.update])
 
   const seeReview = async (item) => {
-    await dispatch({type: 'setService', payload: item});
+    await dispatch({type: 'setService', payload: item.id});
     navigation.navigate('Home');
   }
 
   const newReview = async (item) => {
     await dispatch({type: 'setService', payload: item});
-    navigation.navigate('Home')
+    navigation.navigate('VisualizaService')
   }
 
   return (

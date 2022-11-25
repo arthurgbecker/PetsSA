@@ -14,19 +14,18 @@ const Home = ({navigation}) => {
       const list = await api.get('/service/find')
       setServices(list.data.services)
       dispatch({type: "update", payload: false})
-      console.log(list);
     }
     onScreenLoad()
   }, [state.update])
 
   const seeReview = async (item) => {
-    await dispatch({type: 'setService', payload: item});
-    navigation.navigate('Visualizaservice');
+    await dispatch({type: 'setService', payload: item.id});
+    navigation.navigate('VisualizaService');
   }
 
   const newReview = async (item) => {
-    await dispatch({type: 'setService', payload: item});
-    navigation.navigate('Visualizaservice')
+    await dispatch({type: 'setService', payload: item.id});
+    navigation.navigate('VisualizaService')
   }
 
   return (

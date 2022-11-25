@@ -23,7 +23,7 @@ const reducer = (state, action) => {
         case "setService":
             return {
                 ...state,
-                idService: action.payload.id
+                idService: action.payload
             }
             case "setPet":
                 return {

@@ -5,42 +5,40 @@ import CustomButton from '../components/CustomButton'
 import { Ionicons } from '@expo/vector-icons'
 import api from '../api';
 
-const Visualizaservice = ({ navigation }) => {
+const VisualizaService = ({ navigation }) => {
   const { state, dispatch } = useContext(Context);
   const [services, setServices] = useState({})
 
   useEffect(() => {
     const onScreenLoad = async () => {
-      const list = await api.get('/service/find', {
+      const list = await api.get('/service/findService', {
         params: {
           id: state.idService
         }
       })
+      
       setServices(list.data.services)
       dispatch({ type: "update", payload: false })
       console.log(list);
+      console.log(services)
     }
     onScreenLoad()
   }, [state.update])
 
-  // useEffect(() => {
-  //   const onScreenLoad = async () => {
-  //     const list = await api.get('/service/findByService', {
-  //       params: {
-  //         idService: state.idService
-  //       }
-  //     });
-  //     console.log(list);
-  //     setServices(list.data.services)
-  //     dispatch({ type: "update", payload: false })
-  //   }
-  //   onScreenLoad();
-  // }, [state.update]
-  // )
+  const seeReview = async (item) => {
+    await dispatch({type: 'setService', payload: item});
+    navigation.navigate('RestaurantReviews');
+  }
+
+  const newReview = async (item) => {
+    await dispatch({type: 'setService', payload: item});
+    navigation.navigate('RegisterReview')
+  }
+
 
   return (
     <View style={styles.view}>
-      <Text style={styles.textservice}>Serviço</Text>
+      <Text style={styles.textservice}>Serviço: </Text>
 
       <FlatList
         data={services}
@@ -53,7 +51,6 @@ const Visualizaservice = ({ navigation }) => {
                   uri: "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
                 }}
               />
-
               <Text style={styles.title}>{item.nomeservice}</Text>
               <Text style={styles.item}>Descrição: {item.descricao}</Text>
               <Text style={styles.item}>Valor: R${item.valor}</Text>
@@ -74,11 +71,14 @@ const styles = StyleSheet.create({
   },
   items: {
     fontSize: 18,
-    margin: 10
+    margin: 10,
+    alignItems:"center"
+    
   },
+
   view: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "center",
 
   },
   container: {
@@ -100,13 +100,13 @@ const styles = StyleSheet.create({
   },
   item: {
     fontSize: 15,
-    margin: 3,
+    alignItems:"center"
   },
   imagePet: {
     width: 100,
     height: 100,
-    borderRadius: 10,
+    borderRadius: 50,
   }
 })
 
-export default Visualizaservice;
+export default VisualizaService

@@ -44,13 +44,12 @@ service.get('/find', async (req, res) => {
     }
 })
 
-service.get('/findByService', async (req, res) => {
-    const idService = req.query.idService;
+service.get('/findService', async (req, res) => {
+    const id = req.query.id;
     const services = await Service.findAll({
         where: {
-            idService: idService
+            id: id
         },
-        include: [{model: Service}]
     }).catch(
         (err) => {
             console.log(err)
