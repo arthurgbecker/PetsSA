@@ -1,4 +1,4 @@
-import { StyleSheet, View, ScrollView, Text, Image, useWindowDimensions, TouchableOpacity, Picker } from "react-native";
+import { StyleSheet, View, ScrollView, Text, Image, useWindowDimensions, TouchableOpacity } from "react-native";
 import React, { useContext, useState, useEffect } from 'react'
 import { Context } from '../context/authContext'
 import CustomInput from "../components/CustomInput";

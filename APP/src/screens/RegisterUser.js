@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, Image, useWindowDimensions, TouchableOpacity, Picker } from "react-native";
+import { StyleSheet, Text, View, Image, useWindowDimensions, TouchableOpacity } from "react-native";
 import React, { useState } from 'react';
 import Logo from '../../assets/images/SA2 - logo.png';
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import api from '../api'
+import { Picker } from "@react-native-picker/picker";
 
 
 const RegisterUser = ({ navigation }) => {
