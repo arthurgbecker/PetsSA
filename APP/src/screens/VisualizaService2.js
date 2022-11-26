@@ -1,12 +1,11 @@
-import { Button, SafeAreaView, StyleSheet, Text, View, Image, useWindowDimensions, TouchableOpacity } from "react-native";
+import { Button, SafeAreaView, StyleSheet, Text, FlatList, View, Image, useWindowDimensions, TouchableOpacity } from "react-native";
 import React, { useState, useEffect, useContext } from 'react';
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
-import api from '../api'
 import { Context } from "../context/authContext";
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from '@react-native-community/datetimepicker';
-
+import api from '../api'
 
 const RegisterAgendamento = ({ navigation }) => {
     const [idservice, setIdservice] = useState(''); // BUSCAR INFO A PARTIR DE OBJETO NA PÁGINA

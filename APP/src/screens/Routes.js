@@ -13,6 +13,7 @@ import Agendamento from './Agendamento';
 import RegisterAgendamento from './RegisterAgendamento';
 import User from './User';
 import UserAdmin from './UserAdmin';
+import DateTime from './DateTime';
 
 const Tab = createBottomTabNavigator()
 

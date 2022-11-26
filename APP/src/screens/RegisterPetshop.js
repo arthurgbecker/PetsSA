@@ -1,6 +1,6 @@
 import { StyleSheet, View, Image, useWindowDimensions, Picker, Text } from "react-native";
 import React, { useState } from 'react';
-import Logo from '../../assets/images/SA3 - logo.png';
+import Logo from '../../assets/images/SA3-logo.png';
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import api from '../api'
