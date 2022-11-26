@@ -34,7 +34,7 @@ const Routes = () => {
                 name="ServiceRoutes"
                 component={ServiceRoutes}
                 options={{
-                    headerTitle:"Home",
+                    headerTitle: "Home",
                     tabBarLabel: 'Home',
                     tabBarIcon: () => (<Ionicons name='home' size={24} color='#4536E3' />)
                 }}
@@ -56,7 +56,7 @@ const Routes = () => {
                     tabBarIcon: () => (<Ionicons name='hammer' size={24} color='#4536E3' />)
                 }}
             />
-            
+
             {state.isAdmin ? (
                 <Tab.Screen
                     name="Petshop"
@@ -75,33 +75,24 @@ const Routes = () => {
                 />
             )}
 
-            <Tab.Screen 
-                name="User" 
-                component={User} 
-                options={{ 
-                    tabBarIcon:() => ( <Ionicons  name='person-sharp' size={24} color='#4536E3'/>) 
-                }}
-            />
+            {state.isAdmin ? (
+                <Tab.Screen
+                    name="Clientes"
+                    component={UserAdmin}
+                    options={{
+                        tabBarIcon: () => (<Ionicons name='person-sharp' size={24} color='#4536E3' />)
+                    }}
+                />
 
-            <Tab.Screen 
-            name="Clientes" 
-            component={UserAdmin}
-            options={{ 
-                tabBarIcon:() => ( <Ionicons  name='person-sharp' size={24} color='#4536E3'/>) 
-            }}
-            />
-
-            {/* {state.isAdmin ? (
-            <></>
-        ) : (
-            <Tab.Screen 
-                name="User" 
-                component={Home} 
-                options={{ 
-                    tabBarIcon:() => ( <Ionicons  name='person-sharp' size={24} color='#4536E3'/>) 
-                }} 
-            />
-        )} */}
+            ) : (
+                <Tab.Screen
+                    name="User"
+                    component={User}
+                    options={{
+                        tabBarIcon: () => (<Ionicons name='person-sharp' size={24} color='#4536E3' />)
+                    }}
+                />
+            )}
         </Tab.Navigator>
     )
 }

@@ -55,24 +55,24 @@ const Pets = ({ navigation }) => {
         renderItem={({ item }) => {
           return (
             <View style={styles.container}>
-            <TouchableOpacity style={styles.text} onPress={() => seeReview(item)}>
-              
-              <View style={styles.body}>
-                <View style={styles.dadosPet}>
-                  <Text style={styles.title}>{item.nome}</Text>
-                </View>
-                <View style={styles.trash}>
-                  <Ionicons
-                    name='trash'
-                    size={24}
-                    style={{ margin: 20 }}
-                    color="#4536E3"
-                    onPress={() => deletePet(item)}/>
-                </View>
-              </View>
+              <TouchableOpacity style={styles.text} onPress={() => seeReview(item)}>
 
-            </TouchableOpacity>
-          </View>
+                <View style={styles.body}>
+                  <View style={styles.dadosPet}>
+                    <Text style={styles.title}>{item.nome}</Text>
+                  </View>
+                  <View style={styles.trash}>
+                    <Ionicons
+                      name='trash'
+                      size={24}
+                      style={{ margin: 20 }}
+                      color="#4536E3"
+                      onPress={() => deletePet(item)} />
+                  </View>
+                </View>
+
+              </TouchableOpacity>
+            </View>
           )
         }}
         keyExtractor={(item) => item.id}
@@ -81,14 +81,15 @@ const Pets = ({ navigation }) => {
         {state.isAdmin ? (
           <></>
         ) : (
-          <Ionicons.Button style={styles.iconbutton}
-            name="add-circle"
-            backgroundColor="#AFF4D4"
-            color='#4536E3'
-            onPress={() => navigation.navigate("RegisterPet")}>
-            Cadastrar Pet
-          </Ionicons.Button>
-
+          <View style={styles.botoes}>
+            <Ionicons.Button style={styles.iconbutton}
+              name="add-circle"
+              backgroundColor="#AFF4D4"
+              color='#4536E3'
+              onPress={() => navigation.navigate("RegisterPet")}>
+              Cadastrar Pet
+            </Ionicons.Button>
+          </View>
         )}
       </View>
     </View>
@@ -97,7 +98,7 @@ const Pets = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   textpet: {
-    fontSize: 20,
+    fontSize: 25,
     margin: 10,
   },
   items: {
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  dadosPet:{
+  dadosPet: {
     alignItems: 'center',
     flexDirection: 'row',
   },
@@ -154,7 +155,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     flexDirection: 'row',
-  }
+  },
+  botoes: {
+    margin: 10,
+    flexDirection: 'column-reverse',
+    flex: 3,
+    alignItems: 'center',
+  },
 })
 
 export default Pets;

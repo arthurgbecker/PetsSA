@@ -4,6 +4,7 @@ import { Context } from '../context/authContext'
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import api from '../api'
+import { Ionicons } from '@expo/vector-icons'
 
 const User = ({ navigation }) => {
 
@@ -25,11 +26,11 @@ const User = ({ navigation }) => {
             const list = await api.get('/user/find', {
                 params: {
                     idUser: state.idUser,
-                  }
+                }
             });
 
             const user = list.data.user
-            dispatch({type: "update", payload: false})
+            dispatch({ type: "update", payload: false })
             setNome(user.nome)
             setEmail(user.email)
             setNascimento(user.nascimento)
@@ -39,7 +40,7 @@ const User = ({ navigation }) => {
         }
         onScreenLoad();
     }, [state.update]
-    )    
+    )
 
     const onRegisterPressed = async () => {
         try {
@@ -72,7 +73,7 @@ const User = ({ navigation }) => {
             });
             if (data.status === 200) {
                 alert(data.data.message)
-                dispatch({type: "logOut"})
+                dispatch({ type: "logOut" })
             } else {
                 console.log(data)
             }
@@ -84,9 +85,7 @@ const User = ({ navigation }) => {
 
     return (
         <ScrollView style={styles.view}>
-            {/* <Image
-                
-            /> */}
+            <Text style={styles.perfil}>Meu Perfil</Text>
 
             <CustomInput
                 placeholder="Nome Completo"
@@ -99,7 +98,7 @@ const User = ({ navigation }) => {
                 value={email}
                 setValue={setEmail}
             />
-            
+
             <CustomInput
                 placeholder="Data de Nascimento"
                 value={nascimento}
@@ -136,32 +135,36 @@ const User = ({ navigation }) => {
                 value={confirmepassword}
                 setValue={setConfirmepassword}
             />
-               
+
             <CustomButton text="Salvar Alterações" onPress={onRegisterPressed} />
-            <CustomButton text="Deleter Usuário" onPress={deleteUser} />
-            
+            {/* <CustomButton text="Deleter Usuário" onPress={deleteUser} /> */}
+            <View style={styles.trash}>
+                <Ionicons
+                    name='trash'
+                    size={24}
+                    style={{ margin: 20 }}
+                    color="#4536E3"
+                    onPress={() => deletePet(item)} />
+            </View>
         </ScrollView>
     )
 };
 
 const styles = StyleSheet.create({
     view: {
-   
         padding: 20,
         backgroundColor: '#9F94FC'
     },
-    logo: {
-        width: '70%',
-        maxWidth: 300,
-        maxHeight: 200,
-        padding: 20,
+    perfil: {
+        fontSize: 25,
+        margin: 10,
     },
     login: {
         fontWeight: "bold",
         color: "#4536E3",
     },
     texto: {
-        color: "#4536E3", 
+        color: "#4536E3",
     },
     picker: {
         marginVertical: 5,
@@ -174,6 +177,12 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         height: 50,
         width: '100%'
+    },
+    trash: {
+        flex: 1,
+        justifyContent: 'space-between',
+        flexDirection: 'row-reverse',
+
     }
 });
 

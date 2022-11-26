@@ -2,51 +2,52 @@ import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from 'react
 import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../context/authContext'
 import CustomButton from '../components/CustomButton'
-import { Ionicons  } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import api from '../api';
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
   const { state, dispatch } = useContext(Context);
-  const [ services, setServices ] = useState({})
+  const [services, setServices] = useState({})
 
   useEffect(() => {
     const onScreenLoad = async () => {
       const list = await api.get('/service/find')
       setServices(list.data.services)
-      dispatch({type: "update", payload: false})
+      dispatch({ type: "update", payload: false })
     }
     onScreenLoad()
   }, [state.update])
 
   const seeReview = async (item) => {
-    await dispatch({type: 'setService', payload: item.id});
+    await dispatch({ type: 'setService', payload: item.id });
     navigation.navigate('VisualizaService');
   }
 
   const newReview = async (item) => {
-    await dispatch({type: 'setService', payload: item.id});
+    await dispatch({ type: 'setService', payload: item.id });
     navigation.navigate('VisualizaService')
   }
 
   return (
     <View style={styles.view}>
-      <Text style={styles.text}>Olá, {state.nome}</Text>
-      <Text style={styles.textservice}>Lista de Serviços</Text>
-      
+      <Text style={styles.textnome}>Olá, {state.nome}</Text>
+     
+        <Text style={styles.textservice}>Serviços</Text>
+    
       <FlatList
         data={services}
         renderItem={({ item }) => {
           return (
             <View style={styles.container}>
 
-                <Image style={styles.imagePet}
-                    source={{
-                    uri: "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
-                    }}
-                />
+              <Image style={styles.imagePet}
+                source={{
+                  uri: "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
+                }}
+              />
 
               <TouchableOpacity style={styles.text} onPress={() => seeReview(item)}>
-              <Text style={styles.title}>{item.nomeservice}</Text>
+                <Text style={styles.title}>{item.nomeservice}</Text>
                 <Text style={styles.item}>Descrição: {item.tipo}</Text>
                 <Text style={styles.item}>Valor: R${item.valor}</Text>
                 <Text style={styles.item}>Ver detalhes</Text>
@@ -62,8 +63,12 @@ const Home = ({navigation}) => {
 
 const styles = StyleSheet.create({
   textservice: {
-    fontSize: 20,
+    fontSize: 25,
     margin: 10,
+  },
+  textnome: {
+    fontSize: 20,
+    margin: 10
   },
   items: {
     fontSize: 18,
@@ -72,7 +77,7 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     justifyContent: "center"
-   
+
   },
   container: {
     flexDirection: "row",
@@ -83,7 +88,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     alignItems: 'center',
-  
+
   },
   text: {
     height: 65,

@@ -51,6 +51,7 @@ const VisualizaService = ({ navigation }) => {
                   uri: "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
                 }}
               />
+
               <Text style={styles.title}>{item.nomeservice}</Text>
               <Text style={styles.item}>Descrição: {item.descricao}</Text>
               <Text style={styles.item}>Valor: R${item.valor}</Text>
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
   imagePet: {
     width: 100,
     height: 100,
-    borderRadius: 50,
+    borderRadius: 10,
   }
 })
 
