@@ -57,7 +57,7 @@ const Agendamento = ({navigation}) => {
         keyExtractor={(item) => item.id}
       />
 
-      <DateTime />
+      {/* <DateTime /> */}
 
     </View>
   )

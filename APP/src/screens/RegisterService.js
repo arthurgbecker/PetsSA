@@ -75,18 +75,6 @@ const RegisterService = ({ navigation }) => {
                 <Text style={styles.buttonText}>Escolha uma imagem para seu serviço</Text>
             </TouchableOpacity>
 
-            {/* <CustomInput
-                placeholder="id User"
-                value={iduser}
-                setValue={setIduser}
-            />
-
-            <CustomInput
-                placeholder="id Pet"
-                value={idpet}
-                setValue={setIdpet}
-            /> */}
-
             <CustomInput
                 placeholder="Nome do Serviço"
                 value={nomeservice}
@@ -98,7 +86,6 @@ const RegisterService = ({ navigation }) => {
                 value={tipo}
                 setValue={setTipo}
             />
-
 
             <CustomInput
                 placeholder="Descrição"
@@ -113,7 +100,7 @@ const RegisterService = ({ navigation }) => {
             />
 
 
-            <CustomButton text="Salvar" onPress={onRegisterPressed} />
+            <CustomButton text="Cadastrar Serviço" onPress={onRegisterPressed} />
         </View>
     )
 };

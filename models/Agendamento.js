@@ -20,6 +20,24 @@ const Agendameto = connection.define(
             }
         },
 
+        iduser: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'users',
+                key: 'id'
+            }
+        },
+
+        idpet: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'pets',
+                key: 'id'
+            }
+        },
+
         datetime: {
             type: Sequelize.STRING,
             allowNull: false

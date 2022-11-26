@@ -11,24 +11,6 @@ const Service = connection.define(
             primaryKey: true
         },
 
-        // iduser: {
-        //     type: Sequelize.INTEGER,
-        //     allowNull: false,
-        //     references: {
-        //         model: 'users',
-        //         key: 'id'
-        //     }
-        // },
-
-        // idpet: {
-        //     type: Sequelize.INTEGER,
-        //     allowNull: false,
-        //     references: {
-        //         model: 'pets',
-        //         key: 'id'
-        //     }
-        // },
-
         nomeservice: {
             type: Sequelize.STRING,
             allowNull: false

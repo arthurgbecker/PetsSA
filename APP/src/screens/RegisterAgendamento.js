@@ -13,12 +13,19 @@ const RegisterAgendamento = ({ navigation }) => {
     const [pets, setPets] = useState({});
     const { state, dispatch } = useContext(Context)
     const { height } = useWindowDimensions();
+    const [petname1, setPetname1] = useState(null);
+    const [petname2, setPetname2] = useState(null);
     
     useEffect(() => {
         const onScreenLoad = async () => {
             const list = await api.get('/pet/find');
-            setPets(list.data.pets)
+            setPets(list.data.pets);
             dispatch({type: "update", payload: false})
+            // console.log(list)
+
+            setPetname1(list.data.pets[0].nome);
+            setPetname2(list.data.pets[1].nome);
+            
         }
         onScreenLoad();
     }, [state.update]
@@ -46,7 +53,6 @@ const RegisterAgendamento = ({ navigation }) => {
         <View style={styles.view}>
 
             <CustomInput
-                placeholder="Id Service"
                 value={idservice}
                 setValue={setIdservice}
             />
@@ -63,8 +69,9 @@ const RegisterAgendamento = ({ navigation }) => {
                 onValueChange={setChosenpet}
                 placeholder="Selecione o pet"
             >
-                <Picker.Item label={pets.nome} value="true" />
-                <Picker.Item label={pets.nome} value="false" />
+                <Picker.Item label={'Selecione o Pet'} value="true" />
+                <Picker.Item label={petname1} value="false" />
+                <Picker.Item label={petname2} value="false" />
             </Picker>
             
             <CustomButton text="Salvar" onPress={onRegisterPressed} />
