@@ -10,3 +10,4 @@ GRANT ALL PRIVILEGES ON petssa.* to 'petssa'@'localhost';
 select * from petssa.users;
 select * from petssa.pets;
 select * from petssa.services;
+select * from petssa.agendamentos;

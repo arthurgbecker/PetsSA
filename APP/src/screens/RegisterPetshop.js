@@ -1,6 +1,6 @@
 import { StyleSheet, View, Image, useWindowDimensions, Picker, Text } from "react-native";
 import React, { useState } from 'react';
-import Logo from '../../assets/images/SA3-logo.png';
+import Logo from '../../assets/images/SA3logo.png';
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import api from '../api'
@@ -43,13 +43,19 @@ const RegisterPetshop = ({ navigation }) => {
 
     return (
         <View style={styles.view}>
-
+            <View style={styles.imagem}>
+            <Image
+                source={Logo}
+                style={[styles.logo, { height: height * 0.4 }]}
+                resizeMode="contain"
+            />
+</View>
             <Text style={styles.descricao1}>Pets Sa</Text>
             <Text style={styles.descricao}>CNPJ: 111111111111</Text>
             <Text style={styles.descricao}>E-mail: petssa@gmail.com</Text>
             <Text style={styles.descricao}>Telefone: (48)9 9999-9999</Text>
             <Text style={styles.descricao}>Endereço: Rua aquela la - Florianópolis</Text>
-            <Text style={styles.descricao}>Proprietario: JavaLees</Text>
+            <Text style={styles.descricao}>Proprietário: JavaLees</Text>
 
             <View style={styles.botoes}>
                 <Ionicons.Button style={styles.iconbutton}
@@ -69,19 +75,22 @@ const RegisterPetshop = ({ navigation }) => {
 const styles = StyleSheet.create({
     view: {
         flex: 1,
-        padding: 20,   
+        padding: 20,
     },
     botoes: {
         margin: 10,
         flexDirection: 'column-reverse',
         flex: 3,
-        alignItems: 'center',  
+        alignItems: 'center',
     },
     logo: {
         width: '70%',
         maxWidth: 300,
         maxHeight: 200,
         margin: 18
+    },
+    imagem: {
+alignItems: 'center'
     },
     loginText: {
         fontWeight: "bold",
@@ -91,7 +100,6 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 15,
         padding: 4
-
     },
     descricao1: {
         fontWeight: "bold",
@@ -99,10 +107,8 @@ const styles = StyleSheet.create({
         padding: 4,
         alignItems: 'center'
 
-    },
-    iconbutton: {
-
     }
+
 });
 
 export default RegisterPetshop

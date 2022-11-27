@@ -42,19 +42,19 @@ const Routes = () => {
             />
 
 
-            <Tab.Screen
+            {/* <Tab.Screen
                 name="Agendamento"
                 component={Agendamento}
                 options={{
                     tabBarIcon: () => (<Ionicons name='calendar' size={24} color='#4536E3' />)
                 }}
-            />
+            /> */}
 
             <Tab.Screen
-                name="Registro"
+                name="Agendamento"
                 component={RegisterAgendamento}
                 options={{
-                    tabBarIcon: () => (<Ionicons name='hammer' size={24} color='#4536E3' />)
+                    tabBarIcon: () => (<Ionicons name='calendar' size={24} color='#4536E3' />)
                 }}
             />
 

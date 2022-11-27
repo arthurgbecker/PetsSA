@@ -100,7 +100,7 @@ const RegisterAgendamento = ({ navigation }) => {
 
             {!datePicker && (
                 <View style={{ margin: 10 }}>
-                    <Button title="Selecione a Data" color="#4536E3" onPress={showDatePicker} />
+                    <Button title="Selecione a Data" color="#4536E3" onPress={showDatePicker}/>
                 </View>
             )}
  
@@ -143,7 +143,8 @@ const styles = StyleSheet.create({
     view: {
         alignItems: 'center',
         padding: 20,
-        backgroundColor: '#9F94FC',
+        // backgroundColor: '#9F94FC',
+        flex: 1
     },
     logo: {
         width: '70%',
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
     },
     Button: {
         marginVertical: 5,
-        borderRadius: 5,
+        borderRadius: 20,
         backgroundColor: 'white',
         textAlignVertical: 'center',
         padding: 15,

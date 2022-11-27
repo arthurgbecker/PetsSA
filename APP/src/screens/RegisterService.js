@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import api from '../api'
+import { Ionicons } from '@expo/vector-icons'
 
 import * as ImagePicker from "expo-image-picker";
 
@@ -15,7 +16,7 @@ const RegisterService = ({ navigation }) => {
     const [tipo, setTipo] = useState('');
     const [descricao, setDescricao] = useState('');
     const [valor, setValor] = useState('');
-     
+
     const { height } = useWindowDimensions();
 
     const onRegisterPressed = async () => {
@@ -28,7 +29,7 @@ const RegisterService = ({ navigation }) => {
                 descricao: descricao,
                 valor: valor,
                 imagemservice: imagemservice,
-                
+
             });
             if (authData.status === 200) {
                 console.log(authData.data.message)
@@ -46,34 +47,43 @@ const RegisterService = ({ navigation }) => {
 
     const imagePickerCall = async () => {
         const data = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.All,
-          allowsEditing: true,
-          aspect: [4, 3],
-          quality: 1,
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
         });
-    
+
         if (data.cancelled) {
-          return;
+            return;
         }
-    
+
         setImagemservice(data);
         console.log(data);
     }
 
     return (
         <View style={styles.view}>
-            
+
             <Image style={styles.imagePet}
                 source={{
-                uri: imagemservice
-                    ? imagemservice.uri
-                    : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
+                    uri: imagemservice
+                        ? imagemservice.uri
+                        : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
                 }}
             />
 
-            <TouchableOpacity style={styles.button} onPress={imagePickerCall}>
+            <View style={styles.iconcamera}>
+                <Ionicons
+                    name='camera'
+                    size={24}
+                    style={{ margin: 20 }}
+                    color="#4536E3"
+                    onPress={imagePickerCall} />
+            </View>
+
+            {/* <TouchableOpacity style={styles.button} onPress={imagePickerCall}>
                 <Text style={styles.buttonText}>Escolha uma imagem para seu serviço</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
             <CustomInput
                 placeholder="Nome do Serviço"
@@ -81,7 +91,7 @@ const RegisterService = ({ navigation }) => {
                 setValue={setNomeservice}
             />
 
-             <CustomInput
+            <CustomInput
                 placeholder="Tipo"
                 value={tipo}
                 setValue={setTipo}
@@ -93,7 +103,7 @@ const RegisterService = ({ navigation }) => {
                 setValue={setDescricao}
             />
 
-             <CustomInput
+            <CustomInput
                 placeholder="Valor R$"
                 value={valor}
                 setValue={setValor}
@@ -115,6 +125,10 @@ const styles = StyleSheet.create({
         maxWidth: 300,
         maxHeight: 200,
     },
+    iconcamera: {
+        backgroundColor: "#AFF4D4",
+        borderRadius: 50,
+    },
     loginText: {
         fontWeight: "bold",
         color: "#6200ee",
@@ -134,20 +148,22 @@ const styles = StyleSheet.create({
     imagePet: {
         width: 100,
         height: 100,
-        borderRadius: 10
+        borderRadius: 5,
     },
     button: {
         width: 250,
         height: 50,
-        borderRadius: 3,
-        backgroundColor: "#7159c1",
+        borderRadius: 5,
+        backgroundColor: "#AFF4D4",
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 20
+        marginTop: 5
     },
     buttonText: {
-        color: "#fff"
+
+        color: '#4536E3'
     },
+
 });
 
 export default RegisterService

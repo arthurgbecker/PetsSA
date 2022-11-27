@@ -151,7 +151,7 @@ const UserAdmin = () => {
 const styles = StyleSheet.create({
   view: {
     padding: 20,
-    backgroundColor: '#9F94FC'
+    //backgroundColor: '#9F94FC'
   },
   perfil: {
     fontSize: 25,

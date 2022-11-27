@@ -70,7 +70,6 @@ const Pets = ({ navigation }) => {
                       onPress={() => deletePet(item)} />
                   </View>
                 </View>
-
               </TouchableOpacity>
             </View>
           )

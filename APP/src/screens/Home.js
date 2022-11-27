@@ -18,6 +18,22 @@ const Home = ({ navigation }) => {
     onScreenLoad()
   }, [state.update])
 
+  const deleteService = async (item) => {
+    try {
+      const data = await api.post('/service/delete', {
+        id: item.id
+      });
+      if (data.status === 200) {
+        alert(data.data.message)
+        dispatch({ type: "update", payload: false }) // atualiza
+      } else {
+        console.log(data)
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const seeReview = async (item) => {
     await dispatch({ type: 'setService', payload: item.id });
     navigation.navigate('VisualizaService');
@@ -31,33 +47,46 @@ const Home = ({ navigation }) => {
   return (
     <View style={styles.view}>
       <Text style={styles.textnome}>Olá, {state.nome}</Text>
-     
-        <Text style={styles.textservice}>Serviços</Text>
-    
+
+      <Text style={styles.textservice}>Serviços</Text>
+
       <FlatList
         data={services}
         renderItem={({ item }) => {
           return (
             <View style={styles.container}>
 
-              <Image style={styles.imagePet}
-                source={{
-                  uri: "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
-                }}
-              />
-
               <TouchableOpacity style={styles.text} onPress={() => seeReview(item)}>
-                <Text style={styles.title}>{item.nomeservice}</Text>
-                <Text style={styles.item}>Descrição: {item.tipo}</Text>
-                <Text style={styles.item}>Valor: R${item.valor}</Text>
-                <Text style={styles.item}>Ver detalhes</Text>
+
+                <View style={styles.body}>
+
+                  <Image style={styles.imagePet}
+                    source={{
+                      uri: "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
+                    }}
+                  />
+                  <View style={styles.dadosservice}>
+                    <Text style={styles.title}>{item.nomeservice}</Text>
+                    <Text style={styles.item}>Descrição: {item.tipo}</Text>
+                    <Text style={styles.item}>Valor: R${item.valor}</Text>
+                    <Text style={styles.item}>Ver detalhes &rarr;</Text>
+                  </View>
+                  <View style={styles.trash}>
+                    <Ionicons
+                      name='trash'
+                      size={24}
+                      style={{ margin: 20 }}
+                      color="#4536E3"
+                      onPress={() => deleteService(item)} />
+                  </View>
+                </View>
               </TouchableOpacity>
-            </View>
+            </View >
           )
         }}
         keyExtractor={(item) => item.id}
       />
-    </View>
+    </View >
   )
 }
 
@@ -71,7 +100,7 @@ const styles = StyleSheet.create({
     margin: 10
   },
   items: {
-    fontSize: 18,
+    fontSize: 20,
     margin: 10
   },
   view: {
@@ -91,8 +120,8 @@ const styles = StyleSheet.create({
 
   },
   text: {
-    height: 65,
-    width: '50%',
+    height: 100,
+    width: '100%',
     justifyContent: "center",
   },
   title: {
@@ -112,7 +141,22 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 10,
-  }
+  },
+  dadosservice: {
+ 
+    
+  },
+  body: {
+    flex: 1,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    //backgroundColor: 'blue'
+  },
+  trash: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    //backgroundColor: 'red'
+  },
 })
 
 export default Home;

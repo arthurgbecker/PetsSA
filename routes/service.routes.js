@@ -64,7 +64,7 @@ service.get('/findService', async (req, res) => {
 })
 
 service.post('/delete', async(req, res) => {
-    const id = req.body.idService;
+    const id = req.body.id;
     const deletedService = await Service.destroy({
         where: {
             id: id
