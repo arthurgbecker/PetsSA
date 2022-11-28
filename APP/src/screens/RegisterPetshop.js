@@ -47,22 +47,23 @@ const RegisterPetshop = ({ navigation }) => {
             <View style={styles.imagem}>
             <Image
                 source={Logo}
-                style={[styles.logo, { height: height * 0.4 }]}
+                style={[styles.logo, { height: 260 }]}
                 resizeMode="contain"
             />
 </View>
-            <Text style={styles.descricao1}>Pets Sa</Text>
-            <Text style={styles.descricao}>CNPJ: 111111111111</Text>
-            <Text style={styles.descricao}>E-mail: petssa@gmail.com</Text>
-            <Text style={styles.descricao}>Telefone: (48)9 9999-9999</Text>
-            <Text style={styles.descricao}>Endereço: Rua aquela la - Florianópolis</Text>
+            <Text style={styles.descricao1}>Pets S.A.</Text>
+            <Text style={styles.descricao}>CNPJ: 05.533.407/0001-10</Text>
+            <Text style={styles.descricao}>E-mail: petssa@petssa.com</Text>
+            <Text style={styles.descricao}>Telefone: (48) 90800-0800</Text>
+            <Text style={styles.descricao}>Endereço: Rua de Exemplo - Florianópolis</Text>
             <Text style={styles.descricao}>Proprietário: JavaLees</Text>
 
             <View style={styles.botoes}>
-                <Ionicons.Button style={styles.iconbutton}
+
+                <Ionicons.Button
                     name="add-circle"
                     backgroundColor="#AFF4D4"
-                    color='#4536E3'
+                    color="#4536E3"
                     onPress={() => navigation.navigate("RegisterService")}>
                     Serviço
                 </Ionicons.Button>
@@ -76,22 +77,22 @@ const RegisterPetshop = ({ navigation }) => {
 const styles = StyleSheet.create({
     view: {
         flex: 1,
-        padding: 20,
+        padding: 25,
     },
     botoes: {
-        margin: 10,
+        margin: 20,
         flexDirection: 'column-reverse',
-        flex: 3,
+        flex: 1,
         alignItems: 'center',
     },
     logo: {
-        width: '70%',
-        maxWidth: 300,
-        maxHeight: 200,
-        margin: 18
+        width: '80%',
+        maxWidth: 350,
+        maxHeight: 250,
+        marginVertical: 15,
     },
     imagem: {
-alignItems: 'center'
+        alignItems: 'center'
     },
     loginText: {
         fontWeight: "bold",
@@ -107,7 +108,6 @@ alignItems: 'center'
         fontSize: 20,
         padding: 4,
         alignItems: 'center'
-
     }
 
 });
