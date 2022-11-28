@@ -1,4 +1,4 @@
-import { StyleSheet, View, ScrollView, Text, FlatList, useWindowDimensions, TouchableOpacity, Picker } from "react-native";
+import { StyleSheet, View, ScrollView, Text, FlatList, useWindowDimensions, TouchableOpacity } from "react-native";
 import React, { useContext, useState, useEffect } from 'react'
 import { Context } from '../context/authContext'
 import CustomInput from "../components/CustomInput";
@@ -6,6 +6,7 @@ import CustomButton from "../components/CustomButton";
 import api from '../api'
 import { Ionicons } from '@expo/vector-icons'
 import { Searchbar } from 'react-native-paper';
+import { Picker } from "@react-native-picker/picker";
 
 
 const UserAdmin = () => {

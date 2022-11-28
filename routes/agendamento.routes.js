@@ -9,9 +9,9 @@ agendamento.get('/', (req, res) => {
 
 agendamento.post("/register", async (req, res) => {
     
-    const { idservice, datetime } = req.body;
+    const { idservice, nomeagendamento, nomepet, date, time } = req.body;
 
-    const newAgendamento = new Agendamento({ idservice, datetime });
+    const newAgendamento = new Agendamento({ idservice, nomeagendamento, nomepet, date, time });
     const savedAgendamento = await newAgendamento.save().catch((err) => {
         console.log("Error: ", err);
         res.status(500).json({ error: "Desculpe. Não foi possível realizar este agendamento." });

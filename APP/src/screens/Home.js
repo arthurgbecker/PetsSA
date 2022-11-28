@@ -36,12 +36,12 @@ const Home = ({ navigation }) => {
 
   const seeReview = async (item) => {
     await dispatch({ type: 'setService', payload: item.id });
-    navigation.navigate('VisualizaService');
+    navigation.navigate('VisualizaService2');
   }
 
   const newReview = async (item) => {
     await dispatch({ type: 'setService', payload: item.id });
-    navigation.navigate('VisualizaService')
+    navigation.navigate('VisualizaService2')
   }
 
   return (
@@ -109,15 +109,16 @@ const styles = StyleSheet.create({
 
   },
   container: {
-    flexDirection: "row",
+    flexDirection: "column",
     flexWrap: "wrap",
-    width: '98%',
-    backgroundColor: '#9F94FC',
+    width: '95%',
     margin: 5,
     padding: 10,
+    paddingLeft: 15,
     borderRadius: 10,
+    alignSelf: 'center',
     alignItems: 'center',
-
+    backgroundColor: '#9F94FC',
   },
   text: {
     height: 100,
@@ -154,6 +155,7 @@ const styles = StyleSheet.create({
   },
   trash: {
     alignItems: 'center',
+    justifyContent: 'space-evenly',
     flexDirection: 'row',
     //backgroundColor: 'red'
   },

@@ -1,5 +1,6 @@
-import { StyleSheet, View, ScrollView, Image, useWindowDimensions, Picker, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, View, ScrollView, Image, useWindowDimensions, TouchableOpacity, Text } from "react-native";
 import React, { useState } from 'react';
+import { Picker } from "@react-native-picker/picker";
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import api from '../api'

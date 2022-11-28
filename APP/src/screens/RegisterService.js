@@ -1,21 +1,21 @@
-import { StyleSheet, View, Image, useWindowDimensions, Picker, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, View, Image, useWindowDimensions, TouchableOpacity, Text } from "react-native";
 import React, { useState } from 'react';
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import api from '../api'
 import { Ionicons } from '@expo/vector-icons'
+import { Picker } from "@react-native-picker/picker";
 
 import * as ImagePicker from "expo-image-picker";
 
 const RegisterService = ({ navigation }) => {
-    const [imagemservice, setImagemservice] = useState('');
-
     // const [iduser, setIduser] = useState('');
     // const [idpet, setIdpet] = useState('');
     const [nomeservice, setNomeservice] = useState('');
     const [tipo, setTipo] = useState('');
     const [descricao, setDescricao] = useState('');
     const [valor, setValor] = useState('');
+    const [imagemservice, setImagemservice] = useState('');
 
     const { height } = useWindowDimensions();
 

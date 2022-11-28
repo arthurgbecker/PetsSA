@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, useWindowDimensions, Picker, Text } from "react-native";
+import { StyleSheet, View, Image, useWindowDimensions, Text } from "react-native";
 import React, { useState } from 'react';
 import Logo from '../../assets/images/SA3logo.png';
 import CustomInput from "../components/CustomInput";
@@ -6,6 +6,7 @@ import CustomButton from "../components/CustomButton";
 import api from '../api'
 import { Ionicons } from '@expo/vector-icons'
 import RegisterService from "./RegisterService";
+import { Picker } from "@react-native-picker/picker";
 
 const RegisterPetshop = ({ navigation }) => {
     const [nomepetshop, setNomepetshop] = useState('');

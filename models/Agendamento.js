@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 import connection from '../config/db.js';
 
-const Agendameto = connection.define(
+const Agendamento = connection.define(
     'agendamento',
     {
         id: {
@@ -20,25 +20,31 @@ const Agendameto = connection.define(
             }
         },
 
-        iduser: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'users',
-                key: 'id'
-            }
+        // iduser: {
+        //     type: Sequelize.INTEGER,
+        //     allowNull: false,
+        //     references: {
+        //         model: 'users',
+        //         key: 'id'
+        //     }
+        // },
+
+        nomeagendamento: {
+            type: Sequelize.STRING,
+            allowNull: false
         },
 
-        idpet: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'pets',
-                key: 'id'
-            }
+        nomepet: {
+            type: Sequelize.STRING,
+            allowNull: false
         },
 
-        datetime: {
+        date: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+
+        time: {
             type: Sequelize.STRING,
             allowNull: false
         }
@@ -46,4 +52,4 @@ const Agendameto = connection.define(
     }
 );
 
-export default Agendameto
+export default Agendamento

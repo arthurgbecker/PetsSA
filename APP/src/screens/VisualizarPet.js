@@ -1,10 +1,11 @@
-import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity, Image, useWindowDimensions, Picker, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity, Image, useWindowDimensions, ScrollView } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../context/authContext'
 import api from '../api';
 import CustomButton from '../components/CustomButton';
 import CustomInput from "../components/CustomInput";
 import { Ionicons } from '@expo/vector-icons'
+import { Picker } from "@react-native-picker/picker";
 
 const Visualizarpet = ({ navigation }) => {
   const { state, dispatch } = useContext(Context);

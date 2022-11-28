@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Logo from '../../assets/images/SA2logo.png';
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
-import api from '../api'
+import api from '../api';
 import { Picker } from "@react-native-picker/picker";
 
 

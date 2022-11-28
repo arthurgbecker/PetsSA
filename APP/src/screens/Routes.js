@@ -51,8 +51,8 @@ const Routes = () => {
             /> */}
 
             <Tab.Screen
-                name="Agendamento"
-                component={RegisterAgendamento}
+                name="Agendamentos"
+                component={Agendamento}
                 options={{
                     tabBarIcon: () => (<Ionicons name='calendar' size={24} color='#4536E3' />)
                 }}
